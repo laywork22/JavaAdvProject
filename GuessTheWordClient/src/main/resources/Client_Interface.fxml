@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="922.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="GuessTheWord">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </HBox>
+      <TabPane layoutY="58.0" prefHeight="651.0" prefWidth="922.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
+        <tabs>
+          <Tab fx:id="homeTab" text="Home">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="926.0" style="-fx-background-color: white;">
+                     <children>
+                        <TableView fx:id="storicoPartitaTbl" layoutX="454.0" layoutY="58.0" prefHeight="561.0" prefWidth="468.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="454.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0">
+                          <columns>
+                              <TableColumn prefWidth="75.0" text="ID Partita" />
+                            <TableColumn prefWidth="216.0" text="Avversario" />
+                            <TableColumn prefWidth="92.0" text="Data" />
+                              <TableColumn prefWidth="82.0" text="Durata" />
+                              <TableColumn prefWidth="77.0" text="Esito" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="nuovaPartitaBtn" layoutX="73.0" layoutY="349.0" mnemonicParsing="false" onAction="#iniziaNuovaPartita" prefHeight="67.0" prefWidth="316.0" text="Nuova partita">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <ImageView disable="true" fitHeight="178.0" fitWidth="315.0" layoutX="74.0" layoutY="116.0" pickOnBounds="true" AnchorPane.leftAnchor="74.0">
+                           <image>
+                              <Image url="@../../../../../Scaricati/Gemini_Generated_Image_b1qa09b1qa09b1qa.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="474.0" layoutY="14.0" text="Storico Partite">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Line endX="100.0" endY="-96.0" layoutX="354.0" layoutY="96.0" startX="100.0" startY="522.0" stroke="#cdc5c5" strokeWidth="0.5" />
+                        <Line endX="366.0" layoutX="556.0" layoutY="58.0" startX="-556.0" stroke="#e4dede" />
+                        <Label layoutX="19.0" layoutY="14.0" text="Benvenuto!">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Statistiche">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <AreaChart fx:id="tempiRispostaChart" layoutX="14.0" layoutY="185.0" prefHeight="351.0" prefWidth="428.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="185.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </AreaChart>
+                        <BarChart fx:id="ratioWinLoseChart" layoutX="501.0" layoutY="184.0" prefHeight="353.0" prefWidth="407.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="184.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <HBox alignment="CENTER" layoutX="-4.0" prefHeight="58.0" prefWidth="928.0" spacing="10.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label text="Partite totali giocate:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="partiteTotaliGiocateLbl" text="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Region prefHeight="82.0" prefWidth="112.0" />
+                              <Label text="Win Rate:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="winRateLbl" layoutX="175.0" layoutY="42.0" text="0%">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Region layoutX="360.0" layoutY="10.0" prefHeight="82.0" prefWidth="112.0" />
+                              <Label layoutX="53.0" layoutY="42.0" text="Miglior tempo in assoluto">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="migliorTempoAssolutoLbl" layoutX="157.0" layoutY="42.0" text="0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                        <Line endX="825.0" layoutX="97.0" layoutY="58.0" startX="-100.0" stroke="#c6b8b8" />
+                        <Label layoutX="114.0" layoutY="142.0" text="I tuoi tempi di risposta" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="617.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="591.0" layoutY="142.0" text="Rapporto Vittorie/Sconfitte" AnchorPane.rightAnchor="104.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
