@@ -10,8 +10,8 @@
 
 <AnchorPane fx:id="domandaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea layoutX="21.0" layoutY="44.0" prefHeight="224.0" prefWidth="558.0" />
-      <TextField fx:id="answerFld" layoutX="21.0" layoutY="333.0" prefHeight="26.0" prefWidth="558.0" />
+      <TextArea fx:id="testoSfidaArea" editable="false" layoutX="21.0" layoutY="44.0" prefHeight="224.0" prefWidth="558.0" wrapText="true" />
+      <TextField fx:id="answerFld" layoutX="21.0" layoutY="333.0" onAction="#onInviaRisposta" prefHeight="26.0" prefWidth="558.0" promptText="Scrivi qui la parola e premi Invio" />
       <ProgressBar fx:id="tempoRimastoBar" layoutX="136.0" layoutY="293.0" prefHeight="20.0" prefWidth="443.0" progress="0.0" />
       <Label layoutX="21.0" layoutY="293.0" prefHeight="21.0" prefWidth="113.0" text="Tempo rimasto">
          <font>

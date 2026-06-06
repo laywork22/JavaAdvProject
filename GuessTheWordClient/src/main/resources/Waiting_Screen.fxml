@@ -8,17 +8,30 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<!--
+   Schermata di attesa dell'avversario.
+
+   Dimensioni: 922x708 (le stesse della dashboard del client) cosi' che,
+   mentre lo stage e' bloccato dopo il login, il pannello riempia
+   completamente la finestra senza spazi vuoti.
+
+   Il VBox interno e' ancorato a tutti e quattro i lati: occupa l'intera
+   area dell'AnchorPane (922x708) e, grazie ad alignment="CENTER", mantiene
+   il proprio contenuto (ProgressIndicator, label e pulsante "Annulla")
+   sempre al centro della finestra, indipendentemente da eventuali
+   variazioni di dimensione.
+-->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="708.0" minWidth="922.0" prefHeight="708.0" prefWidth="922.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" layoutX="173.0" layoutY="107.0" prefHeight="187.0" prefWidth="254.0" spacing="15.0">
+      <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ProgressIndicator minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="183.0" />
+            <ProgressIndicator minHeight="-Infinity" minWidth="-Infinity" prefHeight="140.0" prefWidth="220.0" />
             <Label text="In attesa dell'avversario...">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="annullaRicercaPartitaBtn" mnemonicParsing="false" onAction="#onAnullaClicked" text="Annulla" />
+            <Button fx:id="annullaRicercaPartitaBtn" mnemonicParsing="false" onAction="#onAnullaClicked" prefHeight="34.0" prefWidth="140.0" text="Annulla" />
          </children>
       </VBox>
    </children>

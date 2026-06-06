@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="998.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="922.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -37,27 +37,25 @@
         <tabs>
           <Tab fx:id="homeTab" text="Home">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="926.0" style="-fx-background-color: white;">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="646.0" prefWidth="1018.0" style="-fx-background-color: white;">
                      <children>
                         <TableView fx:id="storicoPartitaTbl" layoutX="454.0" layoutY="58.0" prefHeight="561.0" prefWidth="468.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="454.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="59.0">
                           <columns>
-                              <TableColumn prefWidth="75.0" text="ID Partita" />
-                            <TableColumn prefWidth="216.0" text="Avversario" />
-                            <TableColumn prefWidth="92.0" text="Data" />
-                              <TableColumn prefWidth="82.0" text="Durata" />
-                              <TableColumn prefWidth="77.0" text="Esito" />
+                              <TableColumn fx:id="idPartitaClm" prefWidth="75.0" text="ID Partita" />
+                            <TableColumn fx:id="avversarioClm" prefWidth="216.0" text="Avversario" />
+                            <TableColumn fx:id="dataClm" prefWidth="92.0" text="Data" />
+                              <TableColumn fx:id="durataClm" prefWidth="82.0" text="Durata" />
+                              <TableColumn fx:id="esitoClm" prefWidth="77.0" text="Esito" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="nuovaPartitaBtn" layoutX="73.0" layoutY="349.0" mnemonicParsing="false" onAction="#iniziaNuovaPartita" prefHeight="67.0" prefWidth="316.0" text="Nuova partita">
+                        <Button fx:id="nuovaPartitaBtn" layoutX="70.0" layoutY="349.0" mnemonicParsing="false" onAction="#iniziaNuovaPartita" prefHeight="67.0" prefWidth="316.0" text="Nuova partita">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <ImageView disable="true" fitHeight="178.0" fitWidth="315.0" layoutX="74.0" layoutY="116.0" pickOnBounds="true" AnchorPane.leftAnchor="74.0">
-                           <image>
-                              <Image url="@../../../../../Scaricati/Gemini_Generated_Image_b1qa09b1qa09b1qa.png" />
-                           </image>
-                        </ImageView>
                         <Label layoutX="474.0" layoutY="14.0" text="Storico Partite">
                            <font>
                               <Font size="20.0" />
@@ -65,11 +63,16 @@
                         </Label>
                         <Line endX="100.0" endY="-96.0" layoutX="354.0" layoutY="96.0" startX="100.0" startY="522.0" stroke="#cdc5c5" strokeWidth="0.5" />
                         <Line endX="366.0" layoutX="556.0" layoutY="58.0" startX="-556.0" stroke="#e4dede" />
-                        <Label layoutX="19.0" layoutY="14.0" text="Benvenuto!">
+                        <Label fx:id="benvenutoLbl" layoutX="19.0" layoutY="14.0" text="Benvenuto!">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
+                        <ImageView fitHeight="164.0" fitWidth="299.0" layoutX="79.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Logo.jpg" />
+                           </image>
+                        </ImageView>
                      </children></AnchorPane>
             </content>
           </Tab>
