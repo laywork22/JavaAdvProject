@@ -3,6 +3,12 @@ package it.guesstheword.common.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe base astratta che modella un utente registrato nel sistema.
+ * Le sottoclassi concrete sono {@link Giocatore} e {@code Admin}, distinte in
+ * base al ruolo. Le credenziali vengono conservate in modo persistente sul
+ * database lato server.
+ */
 public abstract class Utente implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -13,6 +19,9 @@ public abstract class Utente implements Serializable {
     public Utente() {}
 
     public Utente(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
     public String getUsername() {

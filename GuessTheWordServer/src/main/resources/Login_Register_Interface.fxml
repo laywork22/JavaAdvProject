@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
@@ -13,78 +12,35 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="457.0" prefWidth="567.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+      <VBox fx:id="loginForm" alignment="CENTER" maxWidth="380.0" spacing="20.0">
          <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="467.0">
+            <Label text="Login Amministratore">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="68.0" spacing="25.0">
                <children>
-                  <VBox fx:id="loginForm" alignment="CENTER" layoutX="74.0" layoutY="20.0" prefHeight="324.0" prefWidth="318.0" spacing="20.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="296.0" spacing="25.0">
-                           <children>
-                              <Label text="Username">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField prefHeight="26.0" prefWidth="197.0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="81.0" prefWidth="318.0" spacing="25.0">
-                           <children>
-                              <Label text="Password">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <PasswordField prefHeight="26.0" prefWidth="199.0" />
-                           </children>
-                        </HBox>
-                        <Region prefHeight="4.0" prefWidth="318.0" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="296.0" text="Login" />
-                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="567.0" spacing="20.0">
-                           <children>
-                              <Label alignment="CENTER" text="Non hai un account?" />
-                              <Button mnemonicParsing="false" text="Registrati" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  <Label text="Username">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" prefHeight="26.0" prefWidth="197.0" />
                </children>
-            </AnchorPane>
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-background-color: white;" visible="false">
-         <children>
-            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="467.0">
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="68.0" spacing="25.0">
                <children>
-                  <VBox fx:id="registrationForm" alignment="CENTER" layoutX="74.0" layoutY="20.0" prefHeight="324.0" prefWidth="336.0" spacing="25.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="296.0" spacing="25.0">
-                           <children>
-                              <Label text="Username">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <TextField prefHeight="26.0" prefWidth="180.0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="72.0" prefWidth="336.0" spacing="25.0">
-                           <children>
-                              <Label text="Password">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <PasswordField prefHeight="26.0" prefWidth="185.0" />
-                           </children>
-                        </HBox>
-                        <Region prefHeight="27.0" prefWidth="336.0" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="295.0" text="Registrati" />
-                     </children>
-                  </VBox>
+                  <Label text="Password">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="passwordField" prefHeight="26.0" prefWidth="199.0" />
                </children>
-            </AnchorPane>
+            </HBox>
+            <Region prefHeight="10.0" />
+            <Button mnemonicParsing="false" onAction="#onLogin" prefHeight="30.0" prefWidth="296.0" text="Login" />
          </children>
       </VBox>
    </children>

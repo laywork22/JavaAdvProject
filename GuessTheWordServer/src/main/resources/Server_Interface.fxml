@@ -117,7 +117,7 @@
                               </HBox>
                               <HBox alignment="BOTTOM_LEFT" prefHeight="437.0" prefWidth="323.0">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Spegni Server" />
+                                    <Button fx:id="spegniServerBtn" mnemonicParsing="false" text="Spegni Server" />
                                  </children>
                               </HBox>
                            </children>
@@ -128,8 +128,8 @@
                            </font>
                         </Label>
                         <ProgressBar fx:id="progressoCaricaDocumento" layoutX="417.0" layoutY="97.0" prefHeight="20.0" prefWidth="237.0" progress="0.0" />
-                        <TextArea fx:id="logArea" layoutX="417.0" layoutY="188.0" prefHeight="373.0" prefWidth="402.0" promptText="17:35: Brumotti è stato picchiato" />
-                        <Label layoutX="415.0" layoutY="139.0" text="Log del Server:  %datadioggi">
+                        <TextArea fx:id="logArea" editable="false" layoutX="417.0" layoutY="188.0" prefHeight="373.0" prefWidth="402.0" promptText="17:35: Brumotti è stato picchiato" />
+                        <Label layoutX="415.0" layoutY="139.0" text="Log del Server">
                            <font>
                               <Font size="18.0" />
                            </font>
