@@ -122,7 +122,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <Label layoutX="417.0" layoutY="50.0" text="Nessun documento caricato">
+                        <Label fx:id="docCaricatoLbl" layoutX="417.0" layoutY="50.0" text="Nessun documento caricato">
                            <font>
                               <Font size="18.0" />
                            </font>
