@@ -7,20 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<!--
-   Schermata di attesa dell'avversario.
-
-   Dimensioni: 922x708 (le stesse della dashboard del client) cosi' che,
-   mentre lo stage e' bloccato dopo il login, il pannello riempia
-   completamente la finestra senza spazi vuoti.
-
-   Il VBox interno e' ancorato a tutti e quattro i lati: occupa l'intera
-   area dell'AnchorPane (922x708) e, grazie ad alignment="CENTER", mantiene
-   il proprio contenuto (ProgressIndicator, label e pulsante "Annulla")
-   sempre al centro della finestra, indipendentemente da eventuali
-   variazioni di dimensione.
--->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="708.0" minWidth="922.0" prefHeight="708.0" prefWidth="922.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
