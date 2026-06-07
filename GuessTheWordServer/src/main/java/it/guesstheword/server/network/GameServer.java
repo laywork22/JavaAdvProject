@@ -61,7 +61,7 @@ public class GameServer {
     /** Giocatori in attesa di un avversario. */
     private final Queue<ClientHandler> inAttesa = new LinkedList<>();
 
-    /* ---- stato della partita corrente (protetto da synchronized) ---- */
+    /* stato della partita corrente (protetto da synchronized) */
     private boolean partitaInCorso;
     private ClientHandler giocatore1;
     private ClientHandler giocatore2;
@@ -69,7 +69,7 @@ public class GameServer {
     private long inizioPartitaNanos;
     private ScheduledFuture<?> timeoutFuture;
 
-    /* ---- callback verso l'interfaccia amministratore ---- */
+    /* callback verso l'interfaccia amministratore */
     private Consumer<String> logListener;
     private IntConsumer countListener;
     private final List<String> bufferLog = new ArrayList<>();
@@ -83,8 +83,6 @@ public class GameServer {
         this.gestoreSfida = gestoreSfida;
         this.partitaDAO = partitaDAO;
     }
-
-    /* ============================ avvio / stop ============================ */
 
     /**
      * Avvia il server: apre il {@link ServerSocket} ed inizia ad accettare
@@ -135,7 +133,6 @@ public class GameServer {
         log("Server arrestato.");
     }
 
-    /* ======================= autenticazione ======================= */
 
     /** Gestisce la richiesta di login di un client (UC-02). */
     public void gestisciLogin(ClientHandler handler, String username, String password) {
@@ -175,7 +172,6 @@ public class GameServer {
         }
     }
 
-    /* ========================== matchmaking ========================== */
 
     /** Inserisce un client nella coda di attesa ed eventualmente avvia una partita (UC-03). */
     public synchronized void aggiungiInAttesa(ClientHandler handler) {
@@ -204,8 +200,7 @@ public class GameServer {
         }
     }
 
-    /* ============================ partita ============================ */
-
+    //partita
     private synchronized void avviaPartita(ClientHandler h1, ClientHandler h2) {
         partitaInCorso = true;
         giocatore1 = h1;
@@ -378,7 +373,6 @@ public class GameServer {
         rimuoviSessione(handler);
     }
 
-    /* ============================ UI callbacks ============================ */
 
     /** Registra il listener per i messaggi di log e gli invia il backlog. */
     public synchronized void setLogListener(Consumer<String> logListener) {
@@ -418,7 +412,6 @@ public class GameServer {
         return (h != null && h.getGiocatore() != null) ? h.getGiocatore().getUsername() : "?";
     }
 
-    /* ============================ getter ============================ */
 
     public int getPorta() {
         return porta;

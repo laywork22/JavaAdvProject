@@ -36,20 +36,21 @@ import java.util.Map;
  */
 public class AdminDashboardController {
 
-    /* --- menu Analisi Documento --- */
+    /* menu Analisi Documento */
     @FXML private MenuItem avviaAnalisiItem;
     @FXML private MenuItem caricaDocumentoItem;
     @FXML private MenuItem caricaAnalisiItem;
     @FXML private MenuItem salvaAnalisiItem;
 
-    /* --- dashboard --- */
+    /* dashboard */
     @FXML private Label serverStatusLbl;
     @FXML private Label giocatoriConnessiLbl;
+    @FXML private Label docCaricatoLbl;
     @FXML private ProgressBar progressoCaricaDocumento;
     @FXML private TextArea logArea;
     @FXML private Button spegniServerBtn;
 
-    /* --- statistiche --- */
+    /* statistiche */
     @FXML private Tab statisticheAdminTab;
     @FXML private TableView<RigaStatistica> statisticheAdminTable;
     @FXML private TableColumn<RigaStatistica, String> giocatoreClm;
@@ -68,6 +69,7 @@ public class AdminDashboardController {
         numeroVittorieClm.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().getVittorie())));
         partiteClm.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().getPartite())));
         tempoMedioClm.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getTempoMedioFormattato()));
+        
     }
 
     /** Inietta le dipendenze e collega i listener (chiamato da ServerMain). */
@@ -106,8 +108,7 @@ public class AdminDashboardController {
         aggiornaStatistiche();
     }
 
-    /* =========================== documenti =========================== */
-
+    // SEZIONE DOCUMENTI E ANALISI 
     private void onCaricaDocumento() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Seleziona documenti TXT");
@@ -126,6 +127,7 @@ public class AdminDashboardController {
                 analizzatore.caricaDocumento(f);
                 appendLog("Documento caricato: " + f.getName());
                 caricati++;
+                docCaricatoLbl.setText(caricati + " documento/i caricati");
             } catch (Exception ex) {
                 appendLog("ERRORE caricando " + f.getName() + ": " + ex.getMessage());
             }
@@ -140,6 +142,7 @@ public class AdminDashboardController {
             return;
         }
         AnalisiTask task = new AnalisiTask(analizzatore);
+
         progressoCaricaDocumento.progressProperty().bind(task.progressProperty());
         task.messageProperty().addListener((obs, vecchio, nuovo) -> {
             if (nuovo != null && !nuovo.isEmpty()) {
@@ -222,8 +225,7 @@ public class AdminDashboardController {
         });
     }
 
-    /* =========================== statistiche =========================== */
-
+    //SEZIONE STATISTICHE
     private void aggiornaStatistiche() {
         if (partitaDAO == null) {
             return;
@@ -240,8 +242,7 @@ public class AdminDashboardController {
         statisticheAdminTable.setItems(dati);
     }
 
-    /* =========================== utilita' =========================== */
-
+    //SEZIONE UTIILiTY
     private void appendLog(String riga) {
         if (logArea != null) {
             logArea.appendText(riga + "\n");
