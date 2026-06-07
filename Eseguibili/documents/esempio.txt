@@ -1,0 +1,10 @@
+Il linguaggio Java nasce con l'obiettivo di essere portabile su qualsiasi piattaforma.
+La programmazione concorrente permette di eseguire piu' attivita' contemporaneamente sfruttando i thread.
+Le interfacce grafiche realizzate con JavaFX separano la struttura descritta nei file FXML dalla logica dei controller.
+La comunicazione tra processi diversi avviene spesso attraverso i socket di rete.
+Un database relazionale conserva le informazioni in maniera persistente ed organizzata in tabelle.
+La serializzazione consente di trasformare un oggetto in una sequenza di byte da salvare o trasmettere.
+Il cifrario di Cesare sostituisce ogni lettera con quella che si trova alcune posizioni piu' avanti nell'alfabeto.
+Le stream API introdotte in Java offrono uno stile dichiarativo per elaborare le collezioni di dati.
+L'analisi della frequenza delle parole misura quante volte ciascun termine compare in un documento.
+Una buona architettura software distingue chiaramente le responsabilita' tra i diversi componenti del sistema.
