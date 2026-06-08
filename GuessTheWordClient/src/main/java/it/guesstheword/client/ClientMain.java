@@ -91,9 +91,13 @@ public class ClientMain extends Application {
         dashboardController = new DashboardController(this);
         caricaScena("/Client_Interface.fxml", dashboardController);
 
-        primaryStage.sizeToScene();
-        primaryStage.setResizable(false);
-        primaryStage.centerOnScreen();
+        Platform.runLater(() -> {
+            primaryStage.sizeToScene();
+            primaryStage.centerOnScreen();
+
+            primaryStage.setResizable(false);           
+        });
+
         corrente = Schermata.DASHBOARD;
         dashboardController.caricaDati(); // richiede lo storico al server
     }
@@ -115,12 +119,12 @@ public class ClientMain extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             loader.setController(controller);
             Parent root = loader.load();
-            Scene scene = primaryStage.getScene();
-            if (scene == null) {
-                primaryStage.setScene(new Scene(root));
-            } else {
-                scene.setRoot(root);
-            }
+            Scene nuovaScena = new Scene(root);
+
+            String cssPath = getClass().getResource("/style.css").toExternalForm();
+            nuovaScena.getStylesheets().add(cssPath);
+
+            primaryStage.setScene(nuovaScena);
         } catch (IOException e) {
             e.printStackTrace();
             mostraErroreFatale("Errore nel caricamento dell'interfaccia (" + fxml + "):\n" + e.getMessage());

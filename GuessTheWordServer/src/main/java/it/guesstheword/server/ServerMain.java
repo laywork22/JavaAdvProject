@@ -88,7 +88,11 @@ public class ServerMain extends Application {
             AdminLoginController controller = new AdminLoginController(this, serverAdminAuth);
             loader.setController(controller);
             Parent root = loader.load();
-            primaryStage.setScene(new Scene(root));
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+
+            primaryStage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
             mostraErroreFatale("Errore nel caricamento dell'interfaccia di login:\n" + e.getMessage());
@@ -100,10 +104,14 @@ public class ServerMain extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Server_Interface.fxml"));
             Parent root = loader.load();
+        
             AdminDashboardController controller = loader.getController();
             controller.init(gameServer, analizzatore, gestoreSerializzazione, partitaDAO);
             
-            primaryStage.setScene(new Scene(root));
+            Scene scena = new Scene(root);
+            scena.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+
+            primaryStage.setScene(scena);
 
             Platform.runLater(() -> {
                 primaryStage.sizeToScene();

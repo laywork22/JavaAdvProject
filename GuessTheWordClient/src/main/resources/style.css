@@ -1,0 +1,130 @@
+.root {
+    -fx-background-color: #F3F4F6; /* Grigio chiarissimo per lo sfondo */
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.label {
+    -fx-text-fill: #1F2937; /* Grigio scuro per alta leggibilità */
+}
+
+
+.button {
+    -fx-background-color: #4F46E5; /* Blu/Indaco moderno */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #4338CA; /* Colore più scuro al passaggio del mouse */
+}
+
+.button:pressed {
+    -fx-background-color: #3730A3;
+    -fx-translate-y: 1px; /* Effetto click */
+}
+
+/* Pulsanti secondari (es. "Annulla" o link per cambiare pagina) */
+#annullaRicercaPartitaBtn, .button-secondary {
+    -fx-background-color: #E5E7EB;
+    -fx-text-fill: #374151;
+}
+
+#annullaRicercaPartitaBtn:hover, .button-secondary:hover {
+    -fx-background-color: #D1D5DB;
+}
+
+
+.text-field, .password-field, .text-area {
+    -fx-background-color: white;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused {
+    -fx-border-color: #4F46E5; /* Bordo blu quando selezionato */
+    -fx-border-width: 2px;
+    -fx-background-color: #F9FAFB;
+}
+
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 6 6 0 0;
+    -fx-padding: 5 15 5 15;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #4F46E5;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: transparent transparent #E5E7EB transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #4B5563;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #F9FAFB;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #E0E7FF;
+    -fx-text-fill: #b4b8bd;
+}
+
+
+.progress-bar > .bar {
+    -fx-background-color: #4F46E5;
+    -fx-background-radius: 5px;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 5px;
+}
+
+.progress-indicator {
+    -fx-progress-color: #4F46E5;
+}
+
+
+#loginForm, #registrationForm {
+    -fx-background-color: white;
+    -fx-padding: 30px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}

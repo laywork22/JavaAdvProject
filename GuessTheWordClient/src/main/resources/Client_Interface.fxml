@@ -33,7 +33,7 @@
             <Insets left="20.0" />
          </padding>
       </HBox>
-      <TabPane layoutY="58.0" prefHeight="651.0" prefWidth="922.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
+      <TabPane layoutY="58.0" prefHeight="651.0" prefWidth="950.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0">
         <tabs>
           <Tab fx:id="homeTab" text="Home">
             <content>

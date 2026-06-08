@@ -21,7 +21,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="68.0" prefWidth="296.0" spacing="25.0">
                            <children>
-                              <Label text="Username">
+                              <Label text="Username" minWidth="-Infinity">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
@@ -31,7 +31,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="81.0" prefWidth="318.0" spacing="25.0">
                            <children>
-                              <Label text="Password">
+                              <Label text="Password" minWidth="-Infinity">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
