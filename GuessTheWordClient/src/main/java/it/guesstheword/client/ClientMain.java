@@ -91,13 +91,6 @@ public class ClientMain extends Application {
         dashboardController = new DashboardController(this);
         caricaScena("/Client_Interface.fxml", dashboardController);
 
-        Platform.runLater(() -> {
-            primaryStage.sizeToScene();
-            primaryStage.centerOnScreen();
-
-            primaryStage.setResizable(false);           
-        });
-
         corrente = Schermata.DASHBOARD;
         dashboardController.caricaDati(); // richiede lo storico al server
     }
@@ -120,11 +113,18 @@ public class ClientMain extends Application {
             loader.setController(controller);
             Parent root = loader.load();
             Scene nuovaScena = new Scene(root);
-
             String cssPath = getClass().getResource("/style.css").toExternalForm();
             nuovaScena.getStylesheets().add(cssPath);
 
             primaryStage.setScene(nuovaScena);
+
+            primaryStage.setResizable(true);
+
+            Platform.runLater(() -> {
+                primaryStage.sizeToScene();
+                primaryStage.centerOnScreen();
+                primaryStage.setResizable(false);
+            });
         } catch (IOException e) {
             e.printStackTrace();
             mostraErroreFatale("Errore nel caricamento dell'interfaccia (" + fxml + "):\n" + e.getMessage());
@@ -171,8 +171,6 @@ public class ClientMain extends Application {
             case LOGIN_FALLITO:
                 if (loginController != null) {
                     loginController.mostraErrore(estraiCome(messaggio, String.class));
-
-                    //loginController.mostraErrore((String) messaggio.getContenuto());
                 }
                 break;
             case REGISTRAZIONE_OK:
@@ -183,8 +181,6 @@ public class ClientMain extends Application {
             case REGISTRAZIONE_FALLITA:
                 if (loginController != null) {
                     loginController.mostraErrore(estraiCome(messaggio, String.class));
-
-                    //loginController.mostraErrore((String) messaggio.getContenuto());
                 }
                 break;
             case IN_ATTESA:
@@ -192,11 +188,9 @@ public class ClientMain extends Application {
                 break;
             case INIZIO_PARTITA:
                 mostraPartita(estraiCome(messaggio,Sfida.class));
-                //mostraPartita((Sfida) messaggio.getContenuto());
                 break;
             case ESITO_PARTITA:
                 gestisciEsito(estraiCome(messaggio, EsitoSfida.class));
-                //gestisciEsito((EsitoSfida) messaggio.getContenuto());
                 break;
             case STORICO:
                 if (dashboardController != null && corrente == Schermata.DASHBOARD) {
@@ -206,7 +200,6 @@ public class ClientMain extends Application {
                 break;
             case ERRORE:
                 mostraAvviso("Avviso dal server", estraiCome(messaggio, String.class));
-                //mostraAvviso("Avviso dal server", (String) messaggio.getContenuto());
                 if (corrente == Schermata.ATTESA) {
                     mostraDashboard();
                 }
