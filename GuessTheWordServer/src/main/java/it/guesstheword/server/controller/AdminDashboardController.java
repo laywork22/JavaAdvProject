@@ -152,6 +152,7 @@ public class AdminDashboardController {
         task.setOnSucceeded(e -> {
             progressoCaricaDocumento.progressProperty().unbind();
             progressoCaricaDocumento.setProgress(1.0);
+            docCaricatoLbl.setText("Analisi completata");
         });
         task.setOnFailed(e -> {
             progressoCaricaDocumento.progressProperty().unbind();

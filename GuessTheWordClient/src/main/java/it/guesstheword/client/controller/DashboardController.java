@@ -2,6 +2,8 @@ package it.guesstheword.client.controller;
 
 import it.guesstheword.client.ClientMain;
 import it.guesstheword.common.model.Partita;
+import it.guesstheword.common.network.EsitoSfida;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
@@ -57,11 +59,14 @@ public class DashboardController {
         if (benvenutoLbl != null && clientMain.getGiocatoreCorrente() != null) {
             benvenutoLbl.setText("Benvenuto, " + clientMain.getGiocatoreCorrente().getUsername() + "!");
         }
+
+        
     }
 
     /** Richiede al server i dati da visualizzare (storico + statistiche). */
     public void caricaDati() {
         clientMain.richiediStorico();
+        Platform.runLater(() -> aggiornaStatisticheSecondarie());
     }
 
     /** Pulsante "Nuova partita" (definito nell'FXML come onAction). */
@@ -78,5 +83,30 @@ public class DashboardController {
     public void aggiornaStorico(List<Partita> storico) {
         storicoController.mostra(storico);
         classificaController.aggiorna(storico);
+    }
+
+    
+    public void aggiornaStatisticheSecondarie() {
+        long partiteTotali = storicoPartitaTbl.getItems().stream().count();
+
+        if (partiteTotali == 0) {
+            winRateLbl.setText("0.0%");
+            migliorTempoAssolutoLbl.setText("-");
+            return;
+        }
+
+        long vittorie = storicoPartitaTbl.getItems().stream().filter(p -> p.getEsito().equals("Vittoria")).count();
+
+
+        float winRate = ((float) vittorie/partiteTotali)*100;
+
+        winRateLbl.setText(Float.toString(winRate) + "%");
+
+        storicoPartitaTbl.getItems().stream().
+            filter(p -> "Vittoria".equalsIgnoreCase(p.getEsito())).
+            mapToInt(p -> p.getDurata()).
+            min().
+            ifPresent(bestTime -> migliorTempoAssolutoLbl.setText(bestTime + " s"));
+
     }
 }
