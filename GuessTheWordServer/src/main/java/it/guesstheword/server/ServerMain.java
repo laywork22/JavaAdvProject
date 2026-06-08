@@ -102,8 +102,15 @@ public class ServerMain extends Application {
             Parent root = loader.load();
             AdminDashboardController controller = loader.getController();
             controller.init(gameServer, analizzatore, gestoreSerializzazione, partitaDAO);
+            
             primaryStage.setScene(new Scene(root));
-            primaryStage.setResizable(false);
+
+            Platform.runLater(() -> {
+                primaryStage.sizeToScene();
+                primaryStage.centerOnScreen();
+                primaryStage.setResizable(false);
+            });
+           
             primaryStage.setTitle("GuessTheWord - Server (Amministratore)");
         } catch (IOException e) {
             e.printStackTrace();

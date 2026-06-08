@@ -79,7 +79,7 @@ public class ClientMain extends Application {
         stage.show();
     }
 
-    /* ======================= cambio schermata ======================= */
+    /* cambio schermata */
 
     public void mostraLogin() {
         loginController = new LoginController(this, clientAuth);
@@ -90,10 +90,7 @@ public class ClientMain extends Application {
     public void mostraDashboard() {
         dashboardController = new DashboardController(this);
         caricaScena("/Client_Interface.fxml", dashboardController);
-        // Dopo il login: la finestra assume la dimensione del FXML della
-        // dashboard (922x708) e diventa non ridimensionabile dall'utente.
-        // Tutte le schermate successive (attesa, partita) erediteranno
-        // queste dimensioni perche' lo stage e' bloccato.
+
         primaryStage.sizeToScene();
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
@@ -130,7 +127,7 @@ public class ClientMain extends Application {
         }
     }
 
-    /* ======================= azioni verso il server ======================= */
+    /*  azioni verso il server  */
 
     /** "Nuova partita": entra in matchmaking e mostra la schermata di attesa. */
     public void cercaPartita() {
@@ -158,18 +155,20 @@ public class ClientMain extends Application {
         mostraDashboard();
     }
 
-    /* ========================= dispatcher messaggi ========================= */
+    /*  dispatcher messaggi  */
 
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     private void gestisciMessaggio(Messaggio messaggio) {
         switch (messaggio.getTipo()) {
             case LOGIN_OK:
-                giocatoreCorrente = (Giocatore) messaggio.getContenuto();
+                giocatoreCorrente = estraiCome(messaggio, Giocatore.class);
                 mostraDashboard();
                 break;
             case LOGIN_FALLITO:
                 if (loginController != null) {
-                    loginController.mostraErrore((String) messaggio.getContenuto());
+                    loginController.mostraErrore(estraiCome(messaggio, String.class));
+
+                    //loginController.mostraErrore((String) messaggio.getContenuto());
                 }
                 break;
             case REGISTRAZIONE_OK:
@@ -179,25 +178,31 @@ public class ClientMain extends Application {
                 break;
             case REGISTRAZIONE_FALLITA:
                 if (loginController != null) {
-                    loginController.mostraErrore((String) messaggio.getContenuto());
+                    loginController.mostraErrore(estraiCome(messaggio, String.class));
+
+                    //loginController.mostraErrore((String) messaggio.getContenuto());
                 }
                 break;
             case IN_ATTESA:
                 // conferma di essere in coda: la schermata di attesa e' gia' mostrata
                 break;
             case INIZIO_PARTITA:
-                mostraPartita((Sfida) messaggio.getContenuto());
+                mostraPartita(estraiCome(messaggio,Sfida.class));
+                //mostraPartita((Sfida) messaggio.getContenuto());
                 break;
             case ESITO_PARTITA:
-                gestisciEsito((EsitoSfida) messaggio.getContenuto());
+                gestisciEsito(estraiCome(messaggio, EsitoSfida.class));
+                //gestisciEsito((EsitoSfida) messaggio.getContenuto());
                 break;
             case STORICO:
                 if (dashboardController != null && corrente == Schermata.DASHBOARD) {
-                    dashboardController.aggiornaStorico((List<Partita>) messaggio.getContenuto());
+                    List<Partita> storico = estraiLista(messaggio, Partita.class);
+                    dashboardController.aggiornaStorico(storico);
                 }
                 break;
             case ERRORE:
-                mostraAvviso("Avviso dal server", (String) messaggio.getContenuto());
+                mostraAvviso("Avviso dal server", estraiCome(messaggio, String.class));
+                //mostraAvviso("Avviso dal server", (String) messaggio.getContenuto());
                 if (corrente == Schermata.ATTESA) {
                     mostraDashboard();
                 }
@@ -224,7 +229,7 @@ public class ClientMain extends Application {
         mostraErroreFatale("Connessione al server persa.");
     }
 
-    /* ============================== utilita' ============================== */
+    /*  utilita'  */
 
     private void mostraAvviso(String titolo, String messaggio) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, messaggio, ButtonType.OK);
@@ -239,7 +244,6 @@ public class ClientMain extends Application {
         Platform.exit();
     }
 
-    /* ============================== getter ============================== */
 
     public ServerConnection getConnection() {
         return connection;
@@ -247,6 +251,27 @@ public class ClientMain extends Application {
 
     public Giocatore getGiocatoreCorrente() {
         return giocatoreCorrente;
+    }
+
+    public static <T> T estraiCome(Messaggio messaggio, Class<T> tipoAtteso) {
+        Object contenuto = messaggio.getContenuto();
+
+        if (tipoAtteso.isInstance(contenuto)) {
+            return tipoAtteso.cast(contenuto);
+        }
+
+        throw new IllegalArgumentException("Errore di protocollo: " + tipoAtteso.getSimpleName());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> estraiLista(Messaggio messaggio, Class<T> tipoElemento) {
+        Object contenuto = messaggio.getContenuto();
+
+        if (contenuto instanceof List<?>) {
+            return (List<T>) contenuto;
+        }
+
+        throw new IllegalArgumentException("Errore: il payload non è una lista.");
     }
 
     public static void main(String[] args) {
