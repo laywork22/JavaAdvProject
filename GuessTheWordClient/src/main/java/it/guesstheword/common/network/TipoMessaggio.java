@@ -10,8 +10,6 @@ package it.guesstheword.common.network;
  */
 public enum TipoMessaggio {
 
-    /* ===================== Client -> Server ===================== */
-
     /** Richiesta di autenticazione. Contenuto: {@code String[]{username, password}}. */
     LOGIN,
     /** Richiesta di registrazione. Contenuto: {@code String[]{username, password}}. */
@@ -27,8 +25,7 @@ public enum TipoMessaggio {
     /** Il client comunica la propria disconnessione. */
     DISCONNESSIONE,
 
-    /* ===================== Server -> Client ===================== */
-
+    
     /** Login riuscito. Contenuto: {@code Giocatore} autenticato. */
     LOGIN_OK,
     /** Login fallito. Contenuto: {@code String} (motivo). */
