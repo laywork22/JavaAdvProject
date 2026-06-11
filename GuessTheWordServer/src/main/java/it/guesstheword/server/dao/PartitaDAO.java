@@ -13,9 +13,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * DAO per la persistenza e l'interrogazione delle partite (requisiti
- * IF-13, DF-3, DF-4, DF-5, UC-07, UC-11, UC-13).
+/**Requisiti (IF-13, DF-3, DF-4, DF-5, UC-07, UC-11, UC-13).
+ * 
+ * Data Access Object per la gestione delle Partite e dello Storico.
+ * NOTA ARCHITETTURALE: Questa classe implementa il pattern DAO ma non 
+ * estende l'interfaccia generica DAO<T> in quanto le entità Partita 
+ * richiedono operazioni di lettura context-dependent (es. l'esito 
+ * dipende dall'utente che interroga lo storico) e query di aggregazione 
+ * per le statistiche che non si sposano con le firme CRUD standard.
  */
 public class PartitaDAO {
 

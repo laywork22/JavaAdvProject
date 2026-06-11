@@ -17,10 +17,10 @@ import java.util.Properties;
  *
  * <p>Chiavi gestite:</p>
  * <ul>
- *   <li>{@code server.port} &ndash; porta di ascolto del {@code ServerSocket};</li>
- *   <li>{@code db.url} &ndash; URL JDBC del database SQLite;</li>
- *   <li>{@code admin.default.username} / {@code admin.default.password} &ndash;
- *       credenziali dell'amministratore di default pre-popolato.</li>
+ * <li>{@code server.port} &ndash; porta di ascolto del {@code ServerSocket};</li>
+ * <li>{@code db.url} &ndash; URL JDBC del database SQLite;</li>
+ * <li>{@code admin.default.username} / {@code admin.default.password} &ndash;
+ * credenziali dell'amministratore di default pre-popolato.</li>
  * </ul>
  */
 public class ConfigManager {
@@ -35,6 +35,7 @@ public class ConfigManager {
     }
 
     /**
+     * Costruisce un gestore caricando la configurazione da un file specifico.
      * @param percorso percorso (relativo) del file di properties da caricare.
      */
     public ConfigManager(String percorso) {
@@ -72,22 +73,44 @@ public class ConfigManager {
         System.out.println("[ConfigManager] Nessun file di configurazione trovato: uso i valori di default.");
     }
 
+    /**
+     * Recupera la porta di ascolto del server.
+     * @return la porta su cui avviene la comunicazione (default 6767).
+     */
     public int getPort() {
         return Integer.parseInt(properties.getProperty("server.port", "6767").trim());
     }
 
+    /**
+     * Recupera l'URL di connessione al database.
+     * @return l'URL JDBC del database SQLite (default "jdbc:sqlite:database.db").
+     */
     public String getDbUrl() {
         return properties.getProperty("db.url", "jdbc:sqlite:database.db").trim();
     }
 
+    /**
+     * Recupera lo username di default dell'amministratore.
+     * @return lo username dell'admin (default "admin").
+     */
     public String getAdminUsername() {
         return properties.getProperty("admin.default.username", "admin").trim();
     }
 
+    /**
+     * Recupera la password di default dell'amministratore.
+     * @return la password dell'admin (default "admin").
+     */
     public String getAdminPassword() {
         return properties.getProperty("admin.default.password", "admin").trim();
     }
 
+    /**
+     * Recupera il valore di una generica proprieta' della configurazione.
+     * @param chiave la chiave della proprieta' da cercare nel file
+     * @param def    il valore di default da restituire se la chiave non viene trovata
+     * @return il valore associato alla chiave, oppure il valore di default specificato
+     */
     public String get(String chiave, String def) {
         return properties.getProperty(chiave, def);
     }

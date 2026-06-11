@@ -20,10 +20,16 @@ public class UtenteDAO implements DAO<Giocatore> {
 
     private final DatabaseManager db;
 
+    /**
+     * Inizializza il DAO dei giocatori.
+     *
+     * @param db il gestore della connessione al database
+     */
     public UtenteDAO(DatabaseManager db) {
         this.db = db;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Giocatore findById(int id) {
         String sql = "SELECT id, username, password FROM utenti WHERE id = ? AND ruolo = ?";
@@ -81,6 +87,7 @@ public class UtenteDAO implements DAO<Giocatore> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean inserisci(Giocatore giocatore) {
         String sql = "INSERT INTO utenti (username, password, ruolo) VALUES (?, ?, ?)";
@@ -104,6 +111,7 @@ public class UtenteDAO implements DAO<Giocatore> {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Giocatore> findAll() {
         String sql = "SELECT id, username, password FROM utenti WHERE ruolo = ? ORDER BY username";

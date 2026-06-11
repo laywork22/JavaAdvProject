@@ -49,6 +49,7 @@ public class ClientMain extends Application {
     private AttesaController attesaController;
     private PartitaController partitaController;
 
+    /** {@inheritDoc} */
     @Override
     public void start(Stage stage) {
         this.primaryStage = stage;
@@ -79,14 +80,14 @@ public class ClientMain extends Application {
         stage.show();
     }
 
-    /* cambio schermata */
-
+    /** Carica e mostra l'interfaccia di Login e Registrazione. */
     public void mostraLogin() {
         loginController = new LoginController(this, clientAuth);
         caricaScena("/Login_Register_Interface.fxml", loginController);
         corrente = Schermata.LOGIN;
     }
 
+    /** Carica e mostra l'interfaccia della Dashboard principale. */
     public void mostraDashboard() {
         dashboardController = new DashboardController(this);
         caricaScena("/Client_Interface.fxml", dashboardController);
@@ -95,12 +96,18 @@ public class ClientMain extends Application {
         dashboardController.caricaDati(); // richiede lo storico al server
     }
 
+    /** Carica e mostra la schermata di attesa durante il matchmaking. */
     public void mostraAttesa() {
         attesaController = new AttesaController(this);
         caricaScena("/Waiting_Screen.fxml", attesaController);
         corrente = Schermata.ATTESA;
     }
 
+    /**
+     * Carica e mostra l'interfaccia di gioco.
+     *
+     * @param sfida i dati della sfida da mostrare (parola cifrata, ecc.)
+     */
     public void mostraPartita(Sfida sfida) {
         partitaController = new PartitaController(this, sfida);
         caricaScena("/Game_Interface.fxml", partitaController);
@@ -155,6 +162,7 @@ public class ClientMain extends Application {
         connection.invia(new Messaggio(TipoMessaggio.RICHIESTA_STORICO));
     }
 
+    /** Riporta l'utente alla schermata della Dashboard. */
     public void tornaAllaDashboard() {
         mostraDashboard();
     }
@@ -242,14 +250,25 @@ public class ClientMain extends Application {
     }
 
 
+    /** @return l'oggetto responsabile della connessione di rete col server. */
     public ServerConnection getConnection() {
         return connection;
     }
 
+    /** @return i dati del giocatore attualmente loggato. */
     public Giocatore getGiocatoreCorrente() {
         return giocatoreCorrente;
     }
 
+    /**
+     * Estrae in modo sicuro il contenuto di un messaggio e ne fa il cast al tipo atteso.
+     *
+     * @param messaggio  il messaggio ricevuto dal server
+     * @param tipoAtteso la classe del tipo che ci si aspetta di trovare nel payload
+     * @param <T>        il tipo generico atteso
+     * @return l'oggetto estratto e tipizzato
+     * @throws IllegalArgumentException se il contenuto non corrisponde al tipo atteso
+     */
     public static <T> T estraiCome(Messaggio messaggio, Class<T> tipoAtteso) {
         Object contenuto = messaggio.getContenuto();
 
@@ -260,6 +279,15 @@ public class ClientMain extends Application {
         throw new IllegalArgumentException("Errore di protocollo: " + tipoAtteso.getSimpleName());
     }
 
+    /**
+     * Estrae in modo sicuro una lista dal payload di un messaggio.
+     *
+     * @param messaggio    il messaggio ricevuto dal server
+     * @param tipoElemento la classe del tipo degli elementi contenuti nella lista
+     * @param <T>          il tipo generico degli elementi della lista
+     * @return la lista estratta
+     * @throws IllegalArgumentException se il contenuto non è una lista
+     */
     @SuppressWarnings("unchecked")
     public static <T> List<T> estraiLista(Messaggio messaggio, Class<T> tipoElemento) {
         Object contenuto = messaggio.getContenuto();
@@ -271,6 +299,11 @@ public class ClientMain extends Application {
         throw new IllegalArgumentException("Errore: il payload non è una lista.");
     }
 
+    /**
+     * Metodo main di avvio dell'applicazione.
+     *
+     * @param args argomenti passati da riga di comando
+     */
     public static void main(String[] args) {
         launch(args);
     }

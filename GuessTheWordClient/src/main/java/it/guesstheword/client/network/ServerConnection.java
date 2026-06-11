@@ -119,14 +119,25 @@ public class ServerConnection {
         }
     }
 
+    /**
+     * Registra il callback da eseguire quando arriva un nuovo messaggio dal server.
+     *
+     * @param messaggioHandler la funzione che gestirà il messaggio in arrivo
+     */
     public void setMessaggioHandler(Consumer<Messaggio> messaggioHandler) {
         this.messaggioHandler = messaggioHandler;
     }
 
+    /**
+     * Registra il callback da eseguire in caso di disconnessione anomala.
+     *
+     * @param onDisconnessione l'azione da eseguire alla caduta della connessione
+     */
     public void setOnDisconnessione(Runnable onDisconnessione) {
         this.onDisconnessione = onDisconnessione;
     }
 
+    /** @return true se il socket verso il server è attualmente aperto e connesso. */
     public boolean isConnesso() {
         return connesso;
     }

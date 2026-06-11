@@ -21,16 +21,30 @@ public class DocumentoAnalizzato implements Serializable {
     private final String testo;
     private final Map<String, Long> frequenze;
 
+    /**
+     * 
+     * @param nome      nome del documento
+     * @param testo     testo del documento
+     * @param frequenze frequenze delle parole
+     */
     public DocumentoAnalizzato(String nome, String testo, Map<String, Long> frequenze) {
         this.nome = nome;
         this.testo = testo;
         this.frequenze = frequenze;
     }
 
+    /**
+     * 
+     * @return nome del documento
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * 
+     * @return testo del documento
+     */
     public String getTesto() {
         return testo;
     }
@@ -45,6 +59,7 @@ public class DocumentoAnalizzato implements Serializable {
         return frequenze.size();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return nome + " (" + frequenze.size() + " parole distinte)";

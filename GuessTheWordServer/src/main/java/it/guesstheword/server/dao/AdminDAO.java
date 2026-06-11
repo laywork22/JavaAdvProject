@@ -23,6 +23,7 @@ public class AdminDAO implements DAO<Admin> {
         this.db = db;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Admin findById(int id) {
         String sql = "SELECT id, username, password FROM utenti WHERE id = ? AND ruolo = ?";
@@ -62,6 +63,7 @@ public class AdminDAO implements DAO<Admin> {
         return null;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean inserisci(Admin admin) {
         String sql = "INSERT INTO utenti (username, password, ruolo) VALUES (?, ?, ?)";
@@ -77,6 +79,7 @@ public class AdminDAO implements DAO<Admin> {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<Admin> findAll() {
         String sql = "SELECT id, username, password FROM utenti WHERE ruolo = ? ORDER BY username";

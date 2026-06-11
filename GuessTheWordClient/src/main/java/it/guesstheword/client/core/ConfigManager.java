@@ -21,10 +21,19 @@ public class ConfigManager {
 
     private final Properties properties = new Properties();
 
+    /**
+     * Costruttore di default che carica la configurazione cercando {@code client.properties} 
+     * nei percorsi standard.
+     */
     public ConfigManager() {
         this(NOME_FILE);
     }
 
+    /**
+     * Costruisce un gestore caricando la configurazione da un file specifico.
+     *
+     * @param percorso percorso (relativo) del file di properties da caricare.
+     */
     public ConfigManager(String percorso) {
         carica(percorso);
     }
@@ -57,10 +66,20 @@ public class ConfigManager {
         System.out.println("[ConfigManager] Nessun file di configurazione trovato: uso i valori di default.");
     }
 
+    /**
+     * Recupera l'indirizzo IP del server a cui connettersi.
+     *
+     * @return l'indirizzo IP del server (default "127.0.0.1").
+     */
     public String getServerIp() {
         return properties.getProperty("server.ip", "127.0.0.1").trim();
     }
 
+    /**
+     * Recupera la porta su cui il server e' in ascolto.
+     *
+     * @return la porta di comunicazione del server (default 6767).
+     */
     public int getServerPort() {
         return Integer.parseInt(properties.getProperty("server.port", "6767").trim());
     }

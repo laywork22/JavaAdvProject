@@ -119,14 +119,26 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * 
+     * @return Giocatore in comunicazione
+     */
     public Giocatore getGiocatore() {
         return giocatore;
     }
 
+    /**
+     * 
+     * @param giocatore Nuovo giocatore da gestire con questa connessione
+     */
     public void setGiocatore(Giocatore giocatore) {
         this.giocatore = giocatore;
     }
 
+    /**
+     * 
+     * @return  verifica che il Giocatore sia autenticato sul server
+     */
     public boolean isAutenticato() {
         return giocatore != null;
     }

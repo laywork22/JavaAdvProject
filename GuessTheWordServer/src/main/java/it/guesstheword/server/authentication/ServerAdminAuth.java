@@ -13,10 +13,15 @@ public class ServerAdminAuth implements LoginAuth {
     private final GestoreAutenticazione gestoreAutenticazione;
     private Admin adminAutenticato;
 
+    /**
+     * 
+     * @param gestoreAutenticazione il gestore autenticazione di quell'admin
+     */
     public ServerAdminAuth(GestoreAutenticazione gestoreAutenticazione) {
         this.gestoreAutenticazione = gestoreAutenticazione;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean login(String username, String password) {
         Admin admin = gestoreAutenticazione.loginAdmin(username, password);

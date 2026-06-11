@@ -76,6 +76,14 @@ public class GameServer {
 
     private static final DateTimeFormatter ORA_FMT = DateTimeFormatter.ofPattern("HH:mm:ss");
 
+    /**
+     * Inizializza il server di gioco con i gestori e i DAO necessari.
+     *
+     * @param porta                 la porta su cui il server si metterà in ascolto
+     * @param gestoreAutenticazione il gestore per login e registrazione
+     * @param gestoreSfida          il gestore della logica di gioco e generazione sfide
+     * @param partitaDAO            il DAO per la persistenza delle partite
+     */    
     public GameServer(int porta, GestoreAutenticazione gestoreAutenticazione,
                       GestoreSfida gestoreSfida, PartitaDAO partitaDAO) {
         this.porta = porta;
@@ -413,14 +421,17 @@ public class GameServer {
     }
 
 
+    /** @return la porta di rete su cui il server è in ascolto. */
     public int getPorta() {
         return porta;
     }
 
+    /** @return il numero di giocatori attualmente connessi e autenticati al server. */
     public int getGiocatoriConnessi() {
         return sessioniAttive.size();
     }
 
+    /** @return true se il server è attualmente avviato e accetta connessioni, false altrimenti. */
     public boolean isInEsecuzione() {
         return inEsecuzione;
     }
