@@ -17,7 +17,7 @@ import java.util.List;
  * 
  * Data Access Object per la gestione delle Partite e dello Storico.
  * NOTA ARCHITETTURALE: Questa classe implementa il pattern DAO ma non 
- * estende l'interfaccia generica DAO<T> in quanto le entità Partita 
+ * estende l'interfaccia generica DAO&lt;T&gt; in quanto le entità Partita 
  * richiedono operazioni di lettura context-dependent (es. l'esito 
  * dipende dall'utente che interroga lo storico) e query di aggregazione 
  * per le statistiche che non si sposano con le firme CRUD standard.

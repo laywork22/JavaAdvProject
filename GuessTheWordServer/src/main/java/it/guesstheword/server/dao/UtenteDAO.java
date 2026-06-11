@@ -72,6 +72,9 @@ public class UtenteDAO implements DAO<Giocatore> {
     /**
      * Verifica l'esistenza di uno username, indipendentemente dal ruolo (per
      * evitare collisioni tra account amministratore e giocatori).
+     * 
+     * @param username  username di un utente 
+     * @return {@code true} se l'utente esiste, {@code false} altrimenti
      */
     public boolean esisteUsername(String username) {
         String sql = "SELECT 1 FROM utenti WHERE username = ?";

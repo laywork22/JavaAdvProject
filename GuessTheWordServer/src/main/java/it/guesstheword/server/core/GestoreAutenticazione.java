@@ -18,6 +18,11 @@ public class GestoreAutenticazione {
     private final UtenteDAO utenteDAO;
     private final AdminDAO adminDAO;
 
+    /**
+     * Costruttore parametrico 
+     * @param utenteDAO persistenza degli utenti su database
+     * @param adminDAO  persistenza admin su database
+     */
     public GestoreAutenticazione(UtenteDAO utenteDAO, AdminDAO adminDAO) {
         this.utenteDAO = utenteDAO;
         this.adminDAO = adminDAO;
@@ -63,6 +68,8 @@ public class GestoreAutenticazione {
 
     /**
      * Verifica se uno username e' gia' presente nel sistema.
+     * @param username username dell'utente di cui verificare l'esistenza
+     * @return {@code true} se lo username esiste già o {@code false} altrimenti.
      */
     public boolean esisteUsername(String username) {
         return username != null && utenteDAO.esisteUsername(username.trim());

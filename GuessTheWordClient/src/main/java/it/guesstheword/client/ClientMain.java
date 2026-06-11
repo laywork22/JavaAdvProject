@@ -152,7 +152,10 @@ public class ClientMain extends Application {
         mostraDashboard();
     }
 
-    /** Invia al server la risposta proposta dal giocatore. */
+    /** Invia al server la risposta proposta dal giocatore.
+     * 
+     * @param risposta  Il messaggio di risposta del client
+     */
     public void inviaRisposta(String risposta) {
         connection.invia(new Messaggio(TipoMessaggio.RISPOSTA, risposta));
     }

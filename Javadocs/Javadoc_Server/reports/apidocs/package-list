@@ -1,0 +1,9 @@
+it.guesstheword.common.model
+it.guesstheword.common.network
+it.guesstheword.server
+it.guesstheword.server.authentication
+it.guesstheword.server.concurrency
+it.guesstheword.server.controller
+it.guesstheword.server.core
+it.guesstheword.server.dao
+it.guesstheword.server.network

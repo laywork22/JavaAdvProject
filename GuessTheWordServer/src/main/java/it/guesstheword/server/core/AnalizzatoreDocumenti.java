@@ -51,7 +51,12 @@ public class AnalizzatoreDocumenti {
         documentiCaricati.put(file.getName(), testo);
     }
 
-    /** Legge integralmente un file di testo in UTF-8. */
+    /** Legge integralmente un file di testo in UTF-8. 
+     * 
+     * @param file  file da leggere per l'analisi.
+     * @return stringa di testo estratta dal file.
+     * @throws IOException se la lettura fallisce. 
+    */
     public static String leggiFile(File file) throws IOException {
         byte[] bytes = Files.readAllBytes(file.toPath());
         return new String(bytes, StandardCharsets.UTF_8);
@@ -143,6 +148,7 @@ public class AnalizzatoreDocumenti {
     /**
      * Sostituisce l'insieme dei risultati analizzati (usato in fase di
      * ricaricamento di un'analisi serializzata).
+     * @param risultati  nuovi risultati analizzati
      */
     public void setRisultatiAnalisi(Map<String, DocumentoAnalizzato> risultati) {
         documentiAnalizzati.clear();

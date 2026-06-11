@@ -30,7 +30,7 @@ public class Partita implements Serializable {
 
     /**
      * Costruisce una nuova partita senza specificare l'avversario.
-     * * @param id     l'identificativo univoco della partita
+     * @param id     l'identificativo univoco della partita
      * @param data   la data di inizio e conclusione della partita 
      * @param durata la durata della partita (es. in secondi)
      * @param esito  l'esito della partita ("Vittoria", "Sconfitta", "Pareggio")
@@ -44,7 +44,7 @@ public class Partita implements Serializable {
 
     /**
      * Costruisce una nuova partita completa di tutti i dettagli, incluso l'avversario.
-     * * @param id          l'identificativo univoco della partita
+     * @param id          l'identificativo univoco della partita
      * @param data        la data di inizio e conclusione della partita 
      * @param durata      la durata della partita (es. in secondi)
      * @param esito       l'esito della partita ("Vittoria", "Sconfitta", "Pareggio")

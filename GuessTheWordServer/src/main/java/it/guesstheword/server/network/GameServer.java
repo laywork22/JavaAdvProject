@@ -142,7 +142,12 @@ public class GameServer {
     }
 
 
-    /** Gestisce la richiesta di login di un client (UC-02). */
+    /** Gestisce la richiesta di login di un client (UC-02).
+     * 
+     * @param handler   gestore della connessione di un client
+     * @param username  username dell'utente da registrare
+     * @param password  password del nuovo utente
+     */
     public void gestisciLogin(ClientHandler handler, String username, String password) {
         Giocatore g = gestoreAutenticazione.login(username, password);
         if (g == null) {
@@ -162,7 +167,12 @@ public class GameServer {
         log("Login di '" + g.getUsername() + "'.");
     }
 
-    /** Gestisce la richiesta di registrazione di un client (UC-01). */
+    /** Gestisce la richiesta di registrazione di un client (UC-01).
+     * 
+     * @param handler   gestore della connessione di un client
+     * @param username  username dell'utente da registrare
+     * @param password  password del nuovo utente
+     */
     public void gestisciRegistrazione(ClientHandler handler, String username, String password) {
         boolean ok = gestoreAutenticazione.registra(username, password);
         if (ok) {
@@ -181,7 +191,10 @@ public class GameServer {
     }
 
 
-    /** Inserisce un client nella coda di attesa ed eventualmente avvia una partita (UC-03). */
+    /** Inserisce un client nella coda di attesa ed eventualmente avvia una partita (UC-03).
+     * 
+     * @param handler gestore della connessione di un client
+     */
     public synchronized void aggiungiInAttesa(ClientHandler handler) {
         if (!handler.isAutenticato()) {
             return;
@@ -195,7 +208,10 @@ public class GameServer {
         verificaCodaAttesa();
     }
 
-    /** Rimuove un client dalla coda di attesa (annullamento ricerca). */
+    /** Rimuove un client dalla coda di attesa (annullamento ricerca). 
+     * 
+     * @param handler   gestore della connessione di un client.
+    */
     public synchronized void rimuoviDaAttesa(ClientHandler handler) {
         inAttesa.remove(handler);
     }
@@ -244,7 +260,12 @@ public class GameServer {
                 + ", shift: " + sfidaCorrente.getShift() + ").");
     }
 
-    /** Gestisce una risposta ricevuta da un client durante la partita (UC-05). */
+    /** Gestisce una risposta ricevuta da un client durante la partita (UC-05).
+     * 
+     * @param handler   gestore della connessione di un client
+     * @param risposta  risposta ricevuta da un client durante la partita
+     * 
+     */
     public synchronized void rispostaRicevuta(ClientHandler handler, String risposta) {
         if (!partitaInCorso || (handler != giocatore1 && handler != giocatore2)) {
             return;
@@ -340,7 +361,10 @@ public class GameServer {
 
     /* ========================= storico / disconnessione ========================= */
 
-    /** Invia ad un client lo storico delle proprie partite (UC-07). */
+    /** Invia ad un client lo storico delle proprie partite (UC-07). 
+     * 
+     * @param handler   gestore della connessione di un client
+    */
     public void inviaStorico(ClientHandler handler) {
         if (!handler.isAutenticato()) {
             return;
@@ -349,7 +373,10 @@ public class GameServer {
         handler.invia(new Messaggio(TipoMessaggio.STORICO, new ArrayList<>(storico)));
     }
 
-    /** Gestisce la disconnessione (volontaria o accidentale) di un client. */
+    /** Gestisce la disconnessione (volontaria o accidentale) di un client. 
+     * 
+     * @param handler   gestore della connessione di un client
+    */
     public synchronized void clientDisconnesso(ClientHandler handler) {
         connessi.remove(handler);
         inAttesa.remove(handler);
@@ -382,7 +409,10 @@ public class GameServer {
     }
 
 
-    /** Registra il listener per i messaggi di log e gli invia il backlog. */
+    /** Registra il listener per i messaggi di log e gli invia il backlog.
+     * 
+     * @param logListener   listener per i messaggi di log
+     */
     public synchronized void setLogListener(Consumer<String> logListener) {
         this.logListener = logListener;
         if (logListener != null) {
@@ -393,7 +423,10 @@ public class GameServer {
         }
     }
 
-    /** Registra il listener per il conteggio dei giocatori connessi. */
+    /** Registra il listener per il conteggio dei giocatori connessi.
+     * 
+     * @param countListener listener da registrare per il conteggio dei giocatori connessi
+     */
     public void setCountListener(IntConsumer countListener) {
         this.countListener = countListener;
         aggiornaConteggio();
@@ -405,7 +438,9 @@ public class GameServer {
         }
     }
 
-    /** Aggiunge una riga al log del server (con timestamp). */
+    /** Aggiunge una riga al log del server (con timestamp). 
+     * @param messaggio messaggio di log
+    */
     public synchronized void log(String messaggio) {
         String riga = LocalTime.now().format(ORA_FMT) + " - " + messaggio;
         System.out.println("[GameServer] " + riga);

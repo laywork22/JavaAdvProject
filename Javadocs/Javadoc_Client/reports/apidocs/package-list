@@ -1,0 +1,7 @@
+it.guesstheword.client
+it.guesstheword.client.authentication
+it.guesstheword.client.controller
+it.guesstheword.client.core
+it.guesstheword.client.network
+it.guesstheword.common.model
+it.guesstheword.common.network

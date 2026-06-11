@@ -31,6 +31,11 @@ public class LoginController {
     private final ClientMain clientMain;
     private final LoginAuth loginAuth;
 
+    /**
+     * 
+     * @param clientMain    Il main dell'interfaccia dell'utente
+     * @param loginAuth     Il gestore dell'autenticazione
+     */
     public LoginController(ClientMain clientMain, LoginAuth loginAuth) {
         this.clientMain = clientMain;
         this.loginAuth = loginAuth;

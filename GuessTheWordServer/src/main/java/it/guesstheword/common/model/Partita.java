@@ -30,7 +30,7 @@ public class Partita implements Serializable {
 
     /**
      * Costruisce una nuova partita senza specificare l'avversario.
-     * * @param id     l'identificativo univoco della partita
+     * @param id     l'identificativo univoco della partita
      * @param data   la data di inizio e conclusione della partita 
      * @param durata la durata della partita (es. in secondi)
      * @param esito  l'esito della partita ("Vittoria", "Sconfitta", "Pareggio")
@@ -44,7 +44,7 @@ public class Partita implements Serializable {
 
     /**
      * Costruisce una nuova partita completa di tutti i dettagli, incluso l'avversario.
-     * * @param id          l'identificativo univoco della partita
+     * @param id          l'identificativo univoco della partita
      * @param data        la data di inizio e conclusione della partita 
      * @param durata      la durata della partita (es. in secondi)
      * @param esito       l'esito della partita ("Vittoria", "Sconfitta", "Pareggio")
@@ -58,61 +58,71 @@ public class Partita implements Serializable {
         this.avversario = avversario;
     }
 
-    /** * @return l'identificativo univoco della partita. 
+    /** 
+     * @return l'identificativo univoco della partita. 
      */
     public int getId() {
         return id;
     }
 
-    /** * @param id il nuovo identificativo da impostare per la partita. 
+    /** 
+     * @param id il nuovo identificativo da impostare per la partita. 
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    /** * @return la data in cui si è disputata la partita. 
+    /** 
+     * @return la data in cui si è disputata la partita. 
      */
     public LocalDate getData() {
         return data;
     }
 
-    /** * @param data la data di svolgimento da impostare. 
+    /** 
+     * @param data la data di svolgimento da impostare. 
      */
     public void setData(LocalDate data) {
         this.data = data;
     }
 
-    /** * @return la durata complessiva della partita. 
+    /** 
+     * @return la durata complessiva della partita. 
      */
     public int getDurata() {
         return durata;
     }
 
-    /** * @param durata la durata da impostare per la partita. 
+    /**
+     * @param durata la durata da impostare per la partita. 
      */
     public void setDurata(int durata) {
         this.durata = durata;
     }
 
-    /** * @return l'esito della partita dal punto di vista dell'utente che la visualizza. 
+    /**
+     * @return l'esito della partita dal punto di vista dell'utente che la visualizza. 
      */
     public String getEsito() {
         return esito;
     }
 
-    /** * @param esito l'esito da impostare (es. "Vittoria", "Sconfitta"). 
+    /** 
+     * @param esito l'esito da impostare (es. "Vittoria", "Sconfitta"). 
      */
     public void setEsito(String esito) {
         this.esito = esito;
     }
 
-    /** * @return lo username del giocatore avversario. 
+    /** 
+     * @return lo username del giocatore avversario. 
      */
     public String getAvversario() {
         return avversario;
     }
 
-    /** * @param avversario lo username dell'avversario da impostare. 
+    /**
+     * @param avversario lo username dell'avversario da impostare. 
      */
     public void setAvversario(String avversario) {
         this.avversario = avversario;

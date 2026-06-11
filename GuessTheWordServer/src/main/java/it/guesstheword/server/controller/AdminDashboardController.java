@@ -72,7 +72,15 @@ public class AdminDashboardController {
         
     }
 
-    /** Inietta le dipendenze e collega i listener (chiamato da ServerMain). */
+
+    /**
+     * Inietta le dipendenze e collega i listener (chiamato da ServerMain)
+     * 
+     * @param gameServer             Il gameserver 
+     * @param analizzatore           L'analizzatore dei documenti
+     * @param gestoreSerializzazione Il gestore della serializzione dei messaggi 
+     * @param partitaDAO             Il DAO della partita (persistenza su DB)
+     */
     public void init(GameServer gameServer, AnalizzatoreDocumenti analizzatore,
                      GestoreSerializzazione gestoreSerializzazione, PartitaDAO partitaDAO) {
         this.gameServer = gameServer;
@@ -275,6 +283,13 @@ public class AdminDashboardController {
         private final long partite;
         private final double tempoMedio;
 
+        /**
+         * 
+         * @param giocatore    Username del giocatore
+         * @param vittorie     Numero vittorie
+         * @param partite      Numero partite giocate
+         * @param tempoMedio   Tempo medio di risposta
+         */
         public RigaStatistica(String giocatore, long vittorie, long partite, double tempoMedio) {
             this.giocatore = giocatore;
             this.vittorie = vittorie;
@@ -282,18 +297,34 @@ public class AdminDashboardController {
             this.tempoMedio = tempoMedio;
         }
 
+        /**
+         * 
+         * @return Username del giocatore
+         */
         public String getGiocatore() {
             return giocatore;
         }
 
+        /**
+         * 
+         * @return numero vittore del giocatore
+         */
         public long getVittorie() {
             return vittorie;
         }
 
+        /**
+         * 
+         * @return numero partite giocate
+         */
         public long getPartite() {
             return partite;
         }
 
+        /**
+         * 
+         * @return il tempo medio (gestisce anche il caso in cui il giocatore non ha mai fatto una partita).
+         */
         public String getTempoMedioFormattato() {
             if (vittorie == 0 || tempoMedio <= 0) {
                 return "-";
