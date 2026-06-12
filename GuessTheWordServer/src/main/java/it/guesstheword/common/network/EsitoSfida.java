@@ -14,6 +14,7 @@ public class EsitoSfida implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private boolean vittoriaPerAbbandono = false;
     /** Username del vincitore, {@code null} se nessun vincitore (timeout). */
     private String vincitore;
     /** Soluzione rivelata a fine partita. */
@@ -63,5 +64,13 @@ public class EsitoSfida implements Serializable {
 
     public void setMessaggio(String messaggio) {
         this.messaggio = messaggio;
+    }
+
+    public boolean isVittoriaPerAbbandono() {
+        return vittoriaPerAbbandono;
+    }
+
+    public void setVittoriaPerAbbandono(boolean vittoriaPerAbbandono) {
+        this.vittoriaPerAbbandono = vittoriaPerAbbandono;
     }
 }

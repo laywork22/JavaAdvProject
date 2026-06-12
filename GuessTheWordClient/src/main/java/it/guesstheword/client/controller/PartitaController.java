@@ -112,8 +112,16 @@ public class PartitaController {
             titolo = "Tempo scaduto";
             testo = "Nessun vincitore.\nLa parola era: " + esito.getParolaOriginale();
         } else if (esito.getVincitore().equals(mioUsername)) {
-            titolo = "Hai vinto!";
-            testo = "Complimenti, hai indovinato!\nLa parola era: " + esito.getParolaOriginale();
+            if (esito.isVittoriaPerAbbandono()) {
+                titolo = "Vittoria a tavolino!";
+                testo = "L'avversario ha abbandonato la partita. Hai vinto!";
+            } 
+            else {
+                titolo = "Hai vinto!";
+                testo = "Complimenti, hai indovinato!\nLa parola era: " + esito.getParolaOriginale();
+            }
+
+            
         } else {
             titolo = "Hai perso";
             testo = "Ha vinto " + esito.getVincitore() + ".\nLa parola era: " + esito.getParolaOriginale();

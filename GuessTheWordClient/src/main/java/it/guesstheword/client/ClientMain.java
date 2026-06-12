@@ -74,8 +74,13 @@ public class ClientMain extends Application {
             // Chiusura voluta dall'utente: chiude la socket e termina
             // l'applicazione senza mostrare il messaggio di errore di
             // disconnessione (filtrato in ServerConnection).
+            if (connection != null && connection.isConnesso()) {
+                connection.invia(new Messaggio(TipoMessaggio.DISCONNESSIONE, null));
+            }
+
             connection.chiudi();
             Platform.exit();
+            System.exit(0);
         });
         stage.show();
     }

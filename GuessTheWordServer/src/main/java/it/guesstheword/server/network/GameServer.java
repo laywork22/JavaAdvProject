@@ -394,6 +394,9 @@ public class GameServer {
                 String vinc = avversario.getGiocatore().getUsername();
                 EsitoSfida esito = new EsitoSfida(vinc, parola, false,
                         "Hai vinto: l'avversario ha abbandonato la partita.");
+
+                esito.setVittoriaPerAbbandono(true);
+
                 avversario.invia(new Messaggio(TipoMessaggio.ESITO_PARTITA, esito));
                 registraEsito(giocatore1, giocatore2, avversario, (int) durataSec, false);
             }
