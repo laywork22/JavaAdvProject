@@ -71,13 +71,9 @@ public class ClientMain extends Application {
 
         mostraLogin();
         stage.setOnCloseRequest(e -> {
-            // Chiusura voluta dall'utente: chiude la socket e termina
-            // l'applicazione senza mostrare il messaggio di errore di
-            // disconnessione (filtrato in ServerConnection).
-            if (connection != null && connection.isConnesso()) {
-                connection.invia(new Messaggio(TipoMessaggio.DISCONNESSIONE, null));
-            }
-
+            // Chiusura voluta dall'utente: chiude la socket (chiudi() notifica
+            // gia' la DISCONNESSIONE al server) e termina l'applicazione senza
+            // mostrare il messaggio di errore (filtrato in ServerConnection).
             connection.chiudi();
             Platform.exit();
             System.exit(0);
@@ -236,9 +232,8 @@ public class ClientMain extends Application {
     }
 
     private void gestisciDisconnessione() {
-        if (corrente == Schermata.LOGIN && giocatoreCorrente == null) {
-            return; // gia' gestito altrove
-        }
+        // mostrato anche alla schermata di login: senza avviso l'utente
+        // resterebbe davanti ad un'interfaccia che non risponde piu'
         mostraErroreFatale("Connessione al server persa.");
     }
 

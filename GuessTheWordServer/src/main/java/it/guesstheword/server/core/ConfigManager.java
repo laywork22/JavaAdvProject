@@ -78,7 +78,13 @@ public class ConfigManager {
      * @return la porta su cui avviene la comunicazione (default 6767).
      */
     public int getPort() {
-        return Integer.parseInt(properties.getProperty("server.port", "6767").trim());
+        String valore = properties.getProperty("server.port", "6767").trim();
+        try {
+            return Integer.parseInt(valore);
+        } catch (NumberFormatException e) {
+            System.err.println("[ConfigManager] Porta non valida ('" + valore + "'): uso il default 6767.");
+            return 6767;
+        }
     }
 
     /**

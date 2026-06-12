@@ -137,7 +137,7 @@ public class PartitaDAO {
                 "SELECT u.username AS username, " +
                 "  (SELECT COUNT(*) FROM partite p WHERE p.id_avversario1 = u.id OR p.id_avversario2 = u.id) AS partite, " +
                 "  (SELECT COUNT(*) FROM partite p WHERE p.id_vincitore = u.id) AS vittorie, " +
-                "  (SELECT AVG(p.durata) FROM partite p WHERE p.id_vincitore = u.id) AS tempo_medio " +
+                "  (SELECT AVG(p.durata) FROM partite p WHERE p.id_vincitore = u.id AND p.durata > 0) AS tempo_medio " +
                 "FROM utenti u WHERE u.ruolo = 'GIOCATORE' " +
                 "ORDER BY vittorie DESC, partite DESC, username ASC";
 

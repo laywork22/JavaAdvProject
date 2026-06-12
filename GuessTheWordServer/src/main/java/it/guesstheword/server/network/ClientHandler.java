@@ -62,13 +62,17 @@ public class ClientHandler implements Runnable {
     private void gestisciMessaggio(Messaggio messaggio) {
         switch (messaggio.getTipo()) {
             case LOGIN: {
-                String[] cred = (String[]) messaggio.getContenuto();
-                server.gestisciLogin(this, cred[0], cred[1]);
+                String[] cred = estraiCredenziali(messaggio);
+                if (cred != null) {
+                    server.gestisciLogin(this, cred[0], cred[1]);
+                }
                 break;
             }
             case REGISTRAZIONE: {
-                String[] cred = (String[]) messaggio.getContenuto();
-                server.gestisciRegistrazione(this, cred[0], cred[1]);
+                String[] cred = estraiCredenziali(messaggio);
+                if (cred != null) {
+                    server.gestisciRegistrazione(this, cred[0], cred[1]);
+                }
                 break;
             }
             case CERCA_PARTITA:
@@ -78,7 +82,9 @@ public class ClientHandler implements Runnable {
                 server.rimuoviDaAttesa(this);
                 break;
             case RISPOSTA:
-                server.rispostaRicevuta(this, (String) messaggio.getContenuto());
+                if (messaggio.getContenuto() instanceof String) {
+                    server.rispostaRicevuta(this, (String) messaggio.getContenuto());
+                }
                 break;
             case RICHIESTA_STORICO:
                 server.inviaStorico(this);
@@ -90,6 +96,24 @@ public class ClientHandler implements Runnable {
                 // tipi non previsti in ingresso lato server: ignorati
                 break;
         }
+    }
+
+    /**
+     * Estrae in modo sicuro la coppia username/password dal contenuto di un
+     * messaggio: un payload malformato (tipo errato o incompleto) viene
+     * ignorato invece di terminare il thread con una ClassCastException.
+     *
+     * @return le credenziali, oppure {@code null} se il payload non e' valido
+     */
+    private String[] estraiCredenziali(Messaggio messaggio) {
+        Object contenuto = messaggio.getContenuto();
+        if (contenuto instanceof String[]) {
+            String[] cred = (String[]) contenuto;
+            if (cred.length >= 2) {
+                return cred;
+            }
+        }
+        return null;
     }
 
     /**

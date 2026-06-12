@@ -390,7 +390,6 @@ public class GameServer {
             }
             String parola = sfidaCorrente != null ? sfidaCorrente.getParolaOriginale() : null;
             if (avversario != null && avversario.getGiocatore() != null) {
-                long durataSec = Math.max(1, Math.round((System.nanoTime() - inizioPartitaNanos) / 1_000_000_000.0));
                 String vinc = avversario.getGiocatore().getUsername();
                 EsitoSfida esito = new EsitoSfida(vinc, parola, false,
                         "Hai vinto: l'avversario ha abbandonato la partita.");
@@ -398,7 +397,9 @@ public class GameServer {
                 esito.setVittoriaPerAbbandono(true);
 
                 avversario.invia(new Messaggio(TipoMessaggio.ESITO_PARTITA, esito));
-                registraEsito(giocatore1, giocatore2, avversario, (int) durataSec, false);
+                // durata 0: la vittoria a tavolino non ha un tempo di risposta
+                // e non deve entrare nelle statistiche sui tempi
+                registraEsito(giocatore1, giocatore2, avversario, 0, false);
             }
             azzeraStatoPartita();
             log("Un giocatore ha abbandonato: partita interrotta.");

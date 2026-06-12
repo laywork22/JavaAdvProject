@@ -70,8 +70,9 @@ public class ClassificaController {
         XYChart.Series<String, Number> serie = new XYChart.Series<>();
         serie.setName("Tempo di risposta (s)");
         // i tempi di risposta noti sono quelli delle partite vinte dal giocatore
+        // (durata 0 = vittoria per abbandono, senza tempo di risposta)
         partite.stream()
-                .filter(p -> VITTORIA.equals(p.getEsito()))
+                .filter(p -> VITTORIA.equals(p.getEsito()) && p.getDurata() > 0)
                 .sorted((a, b) -> Integer.compare(a.getId(), b.getId()))
                 .forEach(p -> serie.getData().add(
                         new XYChart.Data<>("#" + p.getId(), p.getDurata())));

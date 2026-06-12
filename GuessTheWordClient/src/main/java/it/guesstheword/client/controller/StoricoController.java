@@ -45,7 +45,8 @@ public class StoricoController {
         avversarioClm.setCellValueFactory(c -> new SimpleStringProperty(testo(c.getValue().getAvversario())));
         dataClm.setCellValueFactory(c -> new SimpleStringProperty(
                 c.getValue().getData() != null ? c.getValue().getData().toString() : ""));
-        durataClm.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getDurata() + " s"));
+        durataClm.setCellValueFactory(c -> new SimpleStringProperty(
+                c.getValue().getDurata() > 0 ? c.getValue().getDurata() + " s" : "-"));
         esitoClm.setCellValueFactory(c -> new SimpleStringProperty(testo(c.getValue().getEsito())));
         tabella.setPlaceholder(new Label("Nessuna partita giocata finora"));
     }
